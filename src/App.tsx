@@ -5,7 +5,7 @@ import Routings from '@/lib/router/Routings';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const App = () => (
-  <Router basename={isProduction ? '/skattjakt' : ''}>
+  <Router basename={isProduction ? '/mausam' : ''}>
     <Layout>
       <Routings />
     </Layout>
