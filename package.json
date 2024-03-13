@@ -1,7 +1,7 @@
 {
   "name": "mausam",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "author": "imdarkly",
   "type": "module",
   "packageManager": "pnpm@8.15.1",
