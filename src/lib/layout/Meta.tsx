@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet';
 
-const APP_NAME = 'vite-react-tailwind-starter';
+const APP_NAME = 'mausam';
 
 const Meta = () => {
   return (
     <Helmet>
-      <title>Vite React Tailwind Starter</title>
+      <title>Mausam</title>
       <meta name="description" content="Mausam" />
 
       <meta name="application-name" content={APP_NAME} />
