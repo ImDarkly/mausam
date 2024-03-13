@@ -8,12 +8,16 @@ type LayoutProps = {
   children: ReactNode;
 };
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const Layout = ({ children }: LayoutProps) => {
   return (
     <ThemeProvider>
       <Meta />
       <div className="flex min-h-screen flex-col">
-        <main className="wrapper">{children}</main>
+        <main className={`${isProduction ? 'select-none' : ''} wrapper`}>
+          {children}
+        </main>
       </div>
     </ThemeProvider>
   );

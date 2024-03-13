@@ -8,7 +8,7 @@ const Home = () => {
         A lightweight{' '}
         <Link
           to="https://github.com/ImDarkly/mausam"
-          className="relative font-semibold text-primary before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:origin-right before:scale-x-0 before:rounded-full before:bg-primary before:transition-transform before:duration-300 hover:before:origin-left hover:before:scale-x-100"
+          className="relative font-semibold text-primary before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:origin-right before:scale-x-0 before:rounded-full before:bg-primary before:transition-transform before:delay-75 before:duration-300 hover:before:origin-left hover:before:scale-x-100"
         >
           open source
         </Link>{' '}

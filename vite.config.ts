@@ -8,6 +8,7 @@ import checker from 'vite-plugin-checker';
 import type { VitePWAOptions } from 'vite-plugin-pwa';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsConfigPaths from 'vite-tsconfig-paths';
+const isProduction = process.env.NODE_ENV === "production";
 
 const pwaOptions: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
@@ -47,4 +48,8 @@ export default defineConfig({
   server: {
     open: true,
   },
+  define: {
+    APP_VERSION: JSON.stringify(process.env.npm_package_version),
+  },
+  base: isProduction ? "/mausam/" : "",
 });
