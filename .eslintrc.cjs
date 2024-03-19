@@ -8,5 +8,7 @@ module.exports = {
         allow: ['info', 'warn', 'error'],
       },
     ],
+    'react/prop-types': 'off',
+    'react/no-unstable-nested-components': 'off',
   },
 };
