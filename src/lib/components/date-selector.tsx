@@ -11,7 +11,7 @@ export const DateSelector = () => {
 
   return (
     <Popover>
-      <div className="flex h-16 w-full items-center justify-center">
+      <div className="flex h-16 w-full items-start justify-center">
         <PopoverTrigger asChild>
           <Button
             variant="ghost"

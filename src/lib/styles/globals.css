@@ -35,3 +35,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+::selection {
+  color: #2563eb;
+  background-color: #eff6ff;
+}
+
+html {
+  height: 100dvh;
+}
+body {
+  height: 100dvh;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  height: 100%;
+}
