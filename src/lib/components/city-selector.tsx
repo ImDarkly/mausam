@@ -6,7 +6,7 @@ import {
   ModalContent,
   useDisclosure,
 } from '@nextui-org/modal';
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { Autocomplete, AutocompleteItem } from '@nextui-org/react';
 
 const CitySelector = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -27,14 +27,24 @@ const CitySelector = () => {
         backdrop="blur"
         onOpenChange={onOpenChange}
         hideCloseButton
-        className="min-h-96 bg-transparent shadow-none"
+        className="bg-transparent shadow-none"
         size="md"
         scrollBehavior="inside"
         autoFocus
       >
         <ModalContent>
           <ModalBody className="bg-transparent">
-            <GooglePlacesAutocomplete apiKey="****" />
+            <Autocomplete
+              selectorIcon={null}
+              classNames={{
+                selectorButton: 'hidden',
+              }}
+              menuTrigger="input"
+            >
+              <AutocompleteItem key={'san_francisco'}>
+                San Francisco
+              </AutocompleteItem>
+            </Autocomplete>
           </ModalBody>
         </ModalContent>
       </Modal>
