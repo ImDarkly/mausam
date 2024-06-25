@@ -1,6 +1,5 @@
+import { Button } from '@nextui-org/button';
 import { Link } from 'react-router-dom';
-
-import { Button } from '@/lib/components/ui/button';
 
 export default function Page404() {
   return (
@@ -15,7 +14,7 @@ export default function Page404() {
               Page Not Found
             </p>
           </div>
-          <p className="w-full text-center text-base font-normal text-muted-foreground">
+          <p className="text-muted-foreground w-full text-center text-base font-normal">
             Looks like your forecast was a bit cloudy today. This page seems to
             be lost in a fog.
           </p>

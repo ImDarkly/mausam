@@ -1,38 +1,38 @@
 import { Icon } from '@iconify/react';
-import { format } from 'date-fns';
+import type { DateValue } from '@internationalized/date';
+import { getLocalTimeZone, today } from '@internationalized/date';
+import { Button } from '@nextui-org/button';
+import { Calendar } from '@nextui-org/calendar';
+import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover';
+import { useDateFormatter } from '@react-aria/i18n';
 import React from 'react';
 
-import { Button } from './ui/button';
-import { Calendar } from './ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-
-export const DateSelector = () => {
-  const [date, setDate] = React.useState<Date>();
+const DateSelector = () => {
+  const [value, setValue] = React.useState<DateValue>(
+    today(getLocalTimeZone())
+  );
+  const formatter = useDateFormatter({
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
     <Popover>
-      <div className="flex h-16 w-full items-start justify-center">
-        <PopoverTrigger asChild>
-          <Button
-            variant="ghost"
-            className="gap-2 rounded-xl text-base font-bold text-primary"
-          >
-            {date ? format(date, 'PPP') : format(new Date(), 'PPP')}
-            <Icon
-              icon="material-symbols:calendar-month-outline-rounded"
-              className="size-5"
-            />
-          </Button>
-        </PopoverTrigger>
-      </div>
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          initialFocus
-        />
+      <PopoverTrigger>
+        <Button variant="light" className="text-base font-bold text-default-50">
+          {value ? formatter.format(value.toDate(getLocalTimeZone())) : '--'}
+          <Icon
+            icon="material-symbols:calendar-month-rounded"
+            className="size-5"
+          />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="p-0">
+        <Calendar value={value} onChange={setValue} />
       </PopoverContent>
     </Popover>
   );
 };
+
+export default DateSelector;

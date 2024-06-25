@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Meta />
       <div className="bg-gradient-to-b from-blue-600 to-blue-800">
-        <main className={`${isProduction ? 'select-none' : ''} wrapper`}>
+        <main className={`${isProduction ? 'select-none' : ''} h-full`}>
           {children}
         </main>
       </div>

@@ -1,23 +1,20 @@
 import { Icon } from '@iconify/react';
+import { Card, CardBody, CardFooter } from '@nextui-org/card';
 
-import { Card, CardContent, CardFooter } from './ui/card';
-
-interface TodayProps {
-  icon: string;
-  temperature: number;
-  description: string;
-}
-
-export const Today = ({ icon, temperature, description }: TodayProps) => {
+const Today = () => {
   return (
-    <Card className="flex flex-col items-center justify-center gap-0 bg-transparent text-primary">
-      <CardContent>
-        <Icon icon={icon} className="size-32" />
-      </CardContent>
-      <CardFooter className="flex-col">
-        <span className="text-6xl font-bold">{temperature}°</span>
-        <div className="text-base font-bold">{description}</div>
+    <Card shadow="none" className="w-full bg-transparent py-8 text-default-50">
+      <CardBody className="flex items-center">
+        <Icon icon="material-symbols:cloud" className="size-32" />
+      </CardBody>
+      <CardFooter>
+        <div className="flex w-full flex-col items-center gap-2">
+          <p className="text-6xl font-bold">22°</p>
+          <p className="text-base">Partly Cloudy</p>
+        </div>
       </CardFooter>
     </Card>
   );
 };
+
+export default Today;

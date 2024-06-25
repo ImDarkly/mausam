@@ -1,33 +1,45 @@
 import { Icon } from '@iconify/react';
-import React from 'react';
-
-import { Button } from './ui/button';
+import { Button } from '@nextui-org/button';
 import {
-  CommandDialog,
-  CommandEmpty,
-  CommandInput,
-  CommandList,
-} from './ui/command';
+  Modal,
+  ModalBody,
+  ModalContent,
+  useDisclosure,
+} from '@nextui-org/modal';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
-export const CitySelector = () => {
-  const [open, setOpen] = React.useState(false);
+const CitySelector = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className="flex h-16 w-full items-center justify-center">
+    <>
       <Button
-        variant="ghost"
-        className="gap-2 rounded-xl text-xl font-bold text-primary"
-        onClick={() => setOpen(true)}
+        onClick={onOpen}
+        className="text-xl font-bold text-default-50"
+        variant="light"
       >
         San Francisco
         <Icon icon="material-symbols:swap-vert-rounded" className="size-5" />
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Find a city..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-        </CommandList>
-      </CommandDialog>
-    </div>
+      <Modal
+        isOpen={isOpen}
+        placement="center"
+        backdrop="blur"
+        onOpenChange={onOpenChange}
+        hideCloseButton
+        className="min-h-96 bg-transparent shadow-none"
+        size="md"
+        scrollBehavior="inside"
+        autoFocus
+      >
+        <ModalContent>
+          <ModalBody className="bg-transparent">
+            <GooglePlacesAutocomplete apiKey="****" />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
+
+export default CitySelector;

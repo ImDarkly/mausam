@@ -1,38 +1,23 @@
 import { Icon } from '@iconify/react';
+import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from './ui/card';
-
-interface HourProps {
-  time: number;
-  temperature: number;
-  icon: string;
-  active?: boolean;
-}
-
-export const Hour = ({ time, temperature, icon, active }: HourProps) => {
+const Hour = ({ index }: { index: number }) => {
   return (
     <Card
-      className={`flex h-32 w-16 flex-col rounded-[20px] p-0 ${
-        active ? '' : 'bg-transparent text-primary'
-      }`}
+      shadow="none"
+      className={`h-32 w-16 rounded-[20px] ${index === 2 ? ' text-blue-600' : 'bg-transparent text-default-50'}`}
     >
-      <CardHeader className="h-full w-full p-0">
-        <CardTitle className="flex h-full w-full items-center justify-center text-base font-bold">
-          {time % 12} {time < 12 ? 'AM' : 'PM'}
-        </CardTitle>
+      <CardHeader className="flex flex-col items-center overflow-hidden px-0">
+        <p>6 AM</p>
       </CardHeader>
-      <CardContent className="flex w-full items-center justify-center p-0">
-        <Icon icon={icon} className="size-9" />
-      </CardContent>
-      <CardFooter className="flex h-full w-full items-center justify-center p-0 text-lg font-bold">
-        {temperature}°
+      <CardBody className="flex h-full items-center p-0">
+        <Icon icon="material-symbols:cloud" className="size-9" />
+      </CardBody>
+      <CardFooter className="flex h-full flex-col items-center p-3">
+        <p className="text-base font-bold">22°</p>
       </CardFooter>
     </Card>
   );
 };
+
+export default Hour;

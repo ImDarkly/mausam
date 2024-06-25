@@ -1,37 +1,23 @@
 import { Icon } from '@iconify/react';
+import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
 
-import { Card, CardFooter, CardHeader, CardTitle } from './ui/card';
-
-interface DayProps {
-  day: string;
-  weatherIcon: string;
-  highTemperature: number;
-  lowTemperature: number;
-  active?: boolean;
-}
-
-export const Day = ({
-  day,
-  weatherIcon,
-  highTemperature,
-  lowTemperature,
-  active,
-}: DayProps) => {
+const Day = ({ index }: { index: number }) => {
   return (
     <Card
-      className={`flex h-16 w-full rounded-[20px] p-0 ${
-        active ? '' : 'bg-transparent text-primary'
-      }`}
+      shadow="none"
+      className={`flex h-16 w-full flex-row rounded-[20px] px-4 ${index === 3 ? ' text-blue-600' : 'bg-transparent text-default-50'}`}
     >
-      <CardHeader className="w-full p-0">
-        <CardTitle className="justify-left flex h-full w-full items-center text-base font-bold">
-          {day}
-        </CardTitle>
+      <CardHeader className="flex w-auto flex-col justify-center">
+        <p>Monday</p>
       </CardHeader>
-      <CardFooter className="flex items-center justify-center gap-4 p-0 text-lg font-bold">
-        <Icon icon={weatherIcon} className="size-9" />
-        {highTemperature}°/{lowTemperature}°
+      <CardBody className="flex w-full flex-col items-end justify-center p-3">
+        <p className="text-base font-bold">22°/12°</p>
+      </CardBody>
+      <CardFooter className="flex w-auto flex-col justify-center">
+        <Icon icon="material-symbols:cloud" className="size-9" />
       </CardFooter>
     </Card>
   );
 };
+
+export default Day;
