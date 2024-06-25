@@ -35,13 +35,22 @@ const CitySelector = () => {
         <ModalContent>
           <ModalBody className="bg-transparent">
             <Autocomplete
+              className="text-primary"
               selectorIcon={null}
               classNames={{
                 selectorButton: 'hidden',
+                clearButton: 'mr-1 text-primary',
               }}
               menuTrigger="input"
+              startContent={
+                <Icon
+                  icon="material-symbols:search-rounded"
+                  className="size-5"
+                />
+              }
+              size="lg"
             >
-              <AutocompleteItem key={'san_francisco'}>
+              <AutocompleteItem key="san_francisco">
                 San Francisco
               </AutocompleteItem>
             </Autocomplete>
