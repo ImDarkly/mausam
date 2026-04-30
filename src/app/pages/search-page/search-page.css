@@ -1,0 +1,43 @@
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75em;
+  padding: 1em;
+  background: transparent;
+  border: 0.0625em solid var(--border, #ccc);
+}
+
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  flex: 1;
+  padding: 0.5em 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 100em;
+}
+
+button {
+  padding: 0.485867em 1em;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 100em;
+  cursor: pointer;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+}
