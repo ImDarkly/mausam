@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { CityNotFoundError, WeatherData } from '../models/weather.model';
@@ -10,9 +10,12 @@ export class WeatherService {
   private readonly BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
   getWeather(city: string): Observable<WeatherData> {
-    const url = `${this.BASE_URL}?q=${city}&appid=${environment.weatherApiKey}&units=metric`;
+    const params = new HttpParams()
+      .set('q', city)
+      .set('appid', environment.weatherApiKey)
+      .set('units', 'metric');
 
-    return this.http.get<OWMResponse>(url).pipe(
+    return this.http.get<OWMResponse>(this.BASE_URL, { params }).pipe(
       map((res) => ({
         temperature: res.main.temp,
         condition: res.weather[0].description,
