@@ -3,11 +3,18 @@
     <h1>Mausam</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="input-row">
-        <input formControlName="city" placeholder="Enter a city..." cdkFocusInitial />
+        <label for="city">City</label>
+        <input
+          id="city"
+          formControlName="city"
+          placeholder="Enter a city..."
+          autofocus
+          [attr.aria-describedby]="cityControl.invalid && cityControl.touched ? 'city-error' : null"
+        />
         <button type="submit">Get Outfit</button>
       </div>
       @if (cityControl.invalid && cityControl.touched) {
-      <p class="error">Please enter a city name.</p>
+      <p id="city-error" class="error">Please enter a city name.</p>
       }
     </form>
   </div>

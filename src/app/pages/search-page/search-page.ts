@@ -1,4 +1,3 @@
-import { A11yModule } from '@angular/cdk/a11y';
 import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
-  imports: [ReactiveFormsModule, A11yModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './search-page.html',
   styleUrl: './search-page.css',
 })
