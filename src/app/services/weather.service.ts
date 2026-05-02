@@ -20,7 +20,7 @@ export class WeatherService {
       map((res) => ({
         temperature: res.main.temp,
         condition: res.weather[0].description,
-        windSpeed: res.wind.speed,
+        windSpeed: res.wind.speed * 3.6,
         humidity: res.main.humidity,
       })),
       catchError((err: HttpErrorResponse) => {

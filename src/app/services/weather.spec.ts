@@ -22,7 +22,7 @@ describe('WeatherService', () => {
     service.getWeather('London').subscribe((data) => {
       expect(data.temperature).toBe(20);
       expect(data.condition).toBe('clear sky');
-      expect(data.windSpeed).toBe(5.1);
+      expect(data.windSpeed).toBe(18.36);
       expect(data.humidity).toBe(60);
     });
 
