@@ -47,3 +47,4 @@ Thumbs.db
 .env
 .env.*
 *.secret
+public/config.json

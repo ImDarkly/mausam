@@ -1,9 +1,9 @@
 <div class="page-wrapper">
   @if (loading()) {
   <div class="spinner"></div>
-  } @if (error()) {
+  } @else if (error()) {
   <p class="error">{{ error() }}</p>
-  } @if(weather()) {
+  } @else if(weather()) {
   <app-weather-card [weather]="weather()!"></app-weather-card>
   }
   <a routerLink="/">Search again</a>
