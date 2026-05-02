@@ -40,6 +40,11 @@ describe('WeatherCard', () => {
       paragraphs = fixture.nativeElement.querySelectorAll('p');
     });
 
+    it('should wrap content in a .card element', () => {
+      const card = fixture.nativeElement.querySelector('.card');
+      expect(card).toBeTruthy();
+    });
+
     it('should render exactly 4 data paragraphs', () => {
       expect(paragraphs.length).toBe(4);
     });
