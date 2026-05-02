@@ -24,8 +24,13 @@ export class ResultPage implements OnInit {
 
   ngOnInit(): void {
     const city = this.route.snapshot.paramMap.get('city');
+    if (!city) {
+      this.error.set('No city specified.');
+      this.loading.set(false);
+      return;
+    }
     this.weatherService
-      .getWeather(city!)
+      .getWeather(city)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (data) => {
