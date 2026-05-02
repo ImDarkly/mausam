@@ -1,1 +1,10 @@
-<p>result-page works!</p>
+<div class="page-wrapper">
+  @if (loading()) {
+  <div class="spinner"></div>
+  } @else if (error()) {
+  <p class="error">{{ error() }}</p>
+  } @else if(weather()) {
+  <app-weather-card [weather]="weather()!"></app-weather-card>
+  }
+  <a routerLink="/">Search again</a>
+</div>

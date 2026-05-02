@@ -1,3 +1,1 @@
-export const environment = {
-  weatherApiKey: '',
-};
+export const environment = {};

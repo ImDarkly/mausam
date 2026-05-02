@@ -27,7 +27,7 @@ describe('WeatherService', () => {
     });
 
     http
-      .expectOne((r) => r.url.includes('London'))
+      .expectOne((r) => r.urlWithParams.includes('London'))
       .flush({
         main: { temp: 20, humidity: 60 },
         weather: [{ description: 'clear sky' }],
@@ -41,7 +41,7 @@ describe('WeatherService', () => {
     });
 
     http
-      .expectOne((r) => r.url.includes('zzzzz'))
+      .expectOne((r) => r.urlWithParams.includes('zzzzz'))
       .flush(null, { status: 404, statusText: 'Not Found' });
   });
 });
