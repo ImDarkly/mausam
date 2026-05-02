@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { WeatherData } from '../../models/weather.model';
 
 @Component({
@@ -8,5 +8,5 @@ import { WeatherData } from '../../models/weather.model';
   styleUrl: './weather-card.css',
 })
 export class WeatherCard {
-  @Input({ required: true }) weather!: WeatherData;
+  weather = input.required<WeatherData>();
 }
