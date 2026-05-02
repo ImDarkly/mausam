@@ -1,13 +1,15 @@
-import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CityNotFoundError, WeatherData } from '../../models/weather.model';
 import { WeatherCard } from '../../components/weather-card/weather-card';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { OutfitCard } from '../../components/outfit-card/outfit-card';
+import { OutfitService } from '../../services/outfit.service';
 
 @Component({
   selector: 'app-result-page',
-  imports: [WeatherCard, RouterLink],
+  imports: [WeatherCard, RouterLink, OutfitCard],
   templateUrl: './result-page.html',
   styleUrl: './result-page.css',
 })
@@ -16,10 +18,16 @@ export class ResultPage implements OnInit {
   loading = signal(true);
   error = signal<string | null>(null);
 
+  outfit = computed(() => {
+    const w = this.weather();
+    return w ? this.outfitService.getRecommendations(w) : [];
+  });
+
   constructor(
     private route: ActivatedRoute,
     private weatherService: WeatherService,
     private destroyRef: DestroyRef,
+    private outfitService: OutfitService,
   ) {}
 
   ngOnInit(): void {

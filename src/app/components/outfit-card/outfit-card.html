@@ -1,0 +1,10 @@
+<div class="card">
+  <h2>What to wear</h2>
+  <ul>
+    @for (item of items(); track item) {
+    <li>{{ item }}</li>
+    } @empty {
+    <li>No recommendations available.</li>
+    }
+  </ul>
+</div>

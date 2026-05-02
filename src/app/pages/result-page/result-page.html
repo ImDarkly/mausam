@@ -3,8 +3,9 @@
   <div class="spinner"></div>
   } @else if (error()) {
   <p class="error">{{ error() }}</p>
-  } @else if(weather()) {
-  <app-weather-card [weather]="weather()!"></app-weather-card>
+  } @else if (weather()) {
+  <app-weather-card [weather]="weather()!" />
+  <app-outfit-card [items]="outfit()" />
   }
   <a routerLink="/">Search again</a>
 </div>
