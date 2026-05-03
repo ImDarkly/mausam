@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { WeatherService } from '../../services/weather.service';
 import { CityNotFoundError, WeatherData } from '../../models/weather.model';
@@ -7,6 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { OutfitCard } from '../../components/outfit-card/outfit-card';
 import { OutfitService } from '../../services/outfit.service';
 import { RecentSearchesService } from '../../services/recent-searches.service';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   selector: 'app-result-page',
@@ -18,6 +19,8 @@ export class ResultPage implements OnInit {
   weather = signal<WeatherData | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);
+  settingsService = inject(SettingsService);
+  unit = this.settingsService.unit;
 
   outfit = computed(() => {
     const w = this.weather();

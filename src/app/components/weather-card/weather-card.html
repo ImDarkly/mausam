@@ -1,6 +1,6 @@
 <div class="card">
-  <p>Temperature: {{ weather().temperature }}</p>
+  <p>Temperature: {{ weather().temperature | temperature: unit() }}</p>
   <p>Condition: {{ weather().condition }}</p>
-  <p>Humidity: {{ weather().humidity }}</p>
-  <p>Wind Speed: {{ weather().windSpeed }}</p>
+  <p>Humidity: {{ weather().humidity }}%</p>
+  <p>Wind Speed: {{ weather().windSpeed }} km/h</p>
 </div>

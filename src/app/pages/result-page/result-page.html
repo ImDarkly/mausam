@@ -4,7 +4,10 @@
   } @else if (error()) {
   <p class="error">{{ error() }}</p>
   } @else if (weather()) {
-  <app-weather-card [weather]="weather()!" />
+  <app-weather-card [weather]="weather()!" [unit]="unit()" />
+  <button (click)="settingsService.toggle()">
+    Switch to {{ unit() === 'metric' ? '°F' : '°C' }}
+  </button>
   <app-outfit-card [items]="outfit()" />
   }
   <a routerLink="/">Search again</a>
