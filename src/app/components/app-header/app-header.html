@@ -1,0 +1,9 @@
+<mat-toolbar>
+  <img src="AppLogo.png" alt="Mausam logo" height="36" />
+  <span>Mausam</span>
+  <span class="spacer"></span>
+  <mat-button-toggle-group [value]="unit()" (change)="settingsService.toggle()">
+    <mat-button-toggle value="metric">Metric</mat-button-toggle>
+    <mat-button-toggle value="imperial">Imperial</mat-button-toggle>
+  </mat-button-toggle-group>
+</mat-toolbar>

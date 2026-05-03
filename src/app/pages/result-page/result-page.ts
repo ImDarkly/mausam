@@ -19,21 +19,20 @@ export class ResultPage implements OnInit {
   weather = signal<WeatherData | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);
-  settingsService = inject(SettingsService);
+
+  private readonly settingsService = inject(SettingsService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly weatherService = inject(WeatherService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly outfitService = inject(OutfitService);
+  private readonly recentSearchesService = inject(RecentSearchesService);
+
   unit = this.settingsService.unit;
 
   outfit = computed(() => {
     const w = this.weather();
     return w ? this.outfitService.getRecommendations(w) : [];
   });
-
-  constructor(
-    private route: ActivatedRoute,
-    private weatherService: WeatherService,
-    private destroyRef: DestroyRef,
-    private outfitService: OutfitService,
-    private recentSearchesService: RecentSearchesService,
-  ) {}
 
   ngOnInit(): void {
     const city = this.route.snapshot.paramMap.get('city');

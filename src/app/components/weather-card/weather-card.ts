@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { WeatherData } from '../../models/weather.model';
 import { TemperaturePipe } from '../../pipes/temperature-pipe';
 import { WindSpeedPipe } from '../../pipes/wind-speed-pipe';

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { CityNotFoundError, WeatherData } from '../models/weather.model';
-import { ConfigService } from '../core/services/config.service';
+import { ConfigService } from './config.service';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
