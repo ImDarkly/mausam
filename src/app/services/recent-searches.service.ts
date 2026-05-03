@@ -23,7 +23,12 @@ export class RecentSearchesService {
   private load(): string[] {
     try {
       const raw = localStorage.getItem(this.STORAGE_KEY);
-      return raw ? JSON.parse(raw) : [];
+      if (!raw) return [];
+
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed)
+        ? parsed.filter((city): city is string => typeof city === 'string')
+        : [];
     } catch {
       return [];
     }

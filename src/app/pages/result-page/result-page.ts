@@ -45,8 +45,12 @@ export class ResultPage implements OnInit {
       .subscribe({
         next: (data) => {
           this.weather.set(data);
-          this.recentSearchesService.add(city);
-          this.loading.set(false);
+          try {
+            this.recentSearchesService.add(city);
+          } catch {
+          } finally {
+            this.loading.set(false);
+          }
         },
         error: (err) => {
           if (err instanceof CityNotFoundError) {
