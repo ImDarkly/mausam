@@ -6,7 +6,7 @@
   } @else if (weather()) {
   <app-weather-card [weather]="weather()!" [unit]="unit()" />
   <button (click)="settingsService.toggle()">
-    Switch to {{ unit() === 'metric' ? '°F' : '°C' }}
+    Switch to {{ unit() === 'metric' ? 'imperial (°F / mph)' : 'metric (°C / km/h)' }}
   </button>
   <app-outfit-card [items]="outfit()" />
   }
