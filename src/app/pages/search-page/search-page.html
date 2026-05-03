@@ -17,5 +17,17 @@
       <p id="city-error" class="error">Please enter a city name.</p>
       }
     </form>
+    @if (recentCities().length) {
+    <div class="recent-searches">
+      <p>Recent searches</p>
+      <ul>
+        @for (city of recentCities(); track city) {
+        <li>
+          <a [routerLink]="['/outfit', city]">{{ city }}</a>
+        </li>
+        }
+      </ul>
+    </div>
+    }
   </div>
 </div>
