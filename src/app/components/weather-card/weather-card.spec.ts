@@ -22,8 +22,8 @@ describe('WeatherCard', () => {
     fixture = TestBed.createComponent(WeatherCard);
     component = fixture.componentInstance;
 
-    // Set required @Input before detectChanges — omitting causes runtime error
     fixture.componentRef.setInput('weather', mockWeather);
+    fixture.componentRef.setInput('unit', 'metric');
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -50,7 +50,7 @@ describe('WeatherCard', () => {
     });
 
     it('should render the temperature', () => {
-      expect(paragraphs[0].textContent).toContain('Temperature: 22');
+      expect(paragraphs[0].textContent).toContain('Temperature: 22.0°C');
     });
 
     it('should render the condition', () => {
@@ -62,16 +62,16 @@ describe('WeatherCard', () => {
     });
 
     it('should render the wind speed', () => {
-      expect(paragraphs[3].textContent).toContain('Wind Speed: 15');
+      expect(paragraphs[3].textContent).toContain('Wind Speed: 15.0 km/h');
     });
   });
 
   it('should display all weather fields in the template', () => {
     const text = fixture.nativeElement.textContent as string;
-    expect(text).toContain('Temperature: 22');
+    expect(text).toContain('Temperature: 22.0°C');
     expect(text).toContain('Condition: Sunny');
     expect(text).toContain('Humidity: 60');
-    expect(text).toContain('Wind Speed: 15');
+    expect(text).toContain('Wind Speed: 15.0 km/h');
   });
 
   it('should update DOM when weather input changes', () => {
@@ -86,11 +86,28 @@ describe('WeatherCard', () => {
     fixture.detectChanges();
 
     const text = fixture.nativeElement.textContent as string;
-    expect(text).toContain('Temperature: 5');
+    expect(text).toContain('Temperature: 5.0°C');
     expect(text).toContain('Condition: Snowy');
     expect(text).toContain('Humidity: 85');
-    expect(text).toContain('Wind Speed: 40');
+    expect(text).toContain('Wind Speed: 40.0 km/h');
     expect(text).not.toContain('Sunny');
     expect(text).not.toContain('Temperature: 22');
+  });
+
+  describe('imperial unit', () => {
+    beforeEach(() => {
+      fixture.componentRef.setInput('unit', 'imperial');
+      fixture.detectChanges();
+    });
+
+    it('should convert temperature to °F', () => {
+      const text = fixture.nativeElement.textContent as string;
+      expect(text).toContain('71.6°F');
+    });
+
+    it('should convert wind speed to mph', () => {
+      const text = fixture.nativeElement.textContent as string;
+      expect(text).toContain('9.3 mph');
+    });
   });
 });
