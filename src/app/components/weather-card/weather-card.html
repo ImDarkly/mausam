@@ -7,9 +7,22 @@
 
     <mat-divider [vertical]="true" />
 
-    <mat-card-content>
-      <p>Humidity: {{ weather().humidity }}%</p>
-      <p>Wind Speed: {{ weather().windSpeed | windSpeed: unit() }}</p>
+    <mat-card-content class="weather-meta">
+      <div class="row">
+        <mat-icon class="iconicon--muted">water_droplet</mat-icon>
+        <div class="col">
+          <span class="label">Humidity</span>
+          <span class="value">{{ weather().humidity }}%</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-icon class="icon--muted">air</mat-icon>
+        <div class="col">
+          <span class="label">Wind Speed</span>
+          <span class="value">{{ weather().windSpeed | windSpeed: unit() }}</span>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

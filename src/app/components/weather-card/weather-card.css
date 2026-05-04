@@ -11,12 +11,54 @@ mat-card {
 
 mat-card-header {
   flex: 1;
+  justify-content: center;
+  align-items: center;
   margin: 0;
-  padding: 1rem;
+  padding: 4rem 0;
 }
 
 mat-card-content {
   flex: 1;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
+  justify-content: center;
+}
+
+mat-card-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  font-weight: normal;
+}
+
+.weather-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    mat-icon {
+      padding: 1rem;
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .label {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.icon--muted {
+  color: var(--mat-sys-on-surface-variant);
 }

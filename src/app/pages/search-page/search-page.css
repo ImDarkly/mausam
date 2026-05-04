@@ -1,5 +1,12 @@
 .container {
+  display: flex;
+  flex-direction: column;
   padding: 0 1rem;
+}
+
+.form-header {
+  padding: 2rem 0;
+  gap: 1rem;
 }
 
 .heading {
@@ -14,7 +21,7 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1rem;
 
   mat-form-field,
   button {

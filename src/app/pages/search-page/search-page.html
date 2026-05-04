@@ -1,6 +1,8 @@
 <div class="container">
-  <h1 class="heading">Where are you heading today?</h1>
-  <p class="description">Enter a city to get the weather and outfit recommendations.</p>
+  <div class="form-header">
+    <h1 class="heading">Where are you heading today?</h1>
+    <p class="description">Enter a city to get the weather and outfit recommendations.</p>
+  </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label for="city">City</mat-label>
