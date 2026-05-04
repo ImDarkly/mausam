@@ -15,7 +15,14 @@
       />
       <mat-error>Please enter a city name.</mat-error>
     </mat-form-field>
-    <button mat-flat-button color="primary" type="submit">Get Outfit</button>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="cityControl.invalid && cityControl.touched"
+    >
+      Get Outfit
+    </button>
   </form>
   @if (recentCities().length) {
   <div class="recent-searches">

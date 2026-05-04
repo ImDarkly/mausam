@@ -8,10 +8,11 @@ import { OutfitCard } from '../../components/outfit-card/outfit-card';
 import { OutfitService } from '../../services/outfit.service';
 import { RecentSearchesService } from '../../services/recent-searches.service';
 import { SettingsService } from '../../services/settings.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-result-page',
-  imports: [WeatherCard, RouterLink, OutfitCard],
+  imports: [WeatherCard, RouterLink, OutfitCard, MatProgressSpinnerModule],
   templateUrl: './result-page.html',
   styleUrl: './result-page.css',
 })

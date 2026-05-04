@@ -1,5 +1,22 @@
-.card {
-  border: 0.0625em solid var(--border, #ccc);
-  border-radius: 0.75em;
-  padding: 1.5em;
+.container {
+  padding: 0 1rem;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+}
+
+mat-card-header {
+  flex: 1;
+  margin: 0;
+  padding: 1rem;
+}
+
+mat-card-content {
+  flex: 1;
+  margin: 0;
+  padding: 1rem;
 }

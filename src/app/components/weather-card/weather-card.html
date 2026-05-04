@@ -1,6 +1,15 @@
-<div class="card">
-  <p>Temperature: {{ weather().temperature | temperature: unit() }}</p>
-  <p>Condition: {{ weather().condition }}</p>
-  <p>Humidity: {{ weather().humidity }}%</p>
-  <p>Wind Speed: {{ weather().windSpeed | windSpeed: unit() }}</p>
+<div class="container">
+  <mat-card class="stats" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{ weather().temperature | temperature: unit() }}</mat-card-title>
+      <mat-card-subtitle>{{ weather().condition }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider [vertical]="true" />
+
+    <mat-card-content>
+      <p>Humidity: {{ weather().humidity }}%</p>
+      <p>Wind Speed: {{ weather().windSpeed | windSpeed: unit() }}</p>
+    </mat-card-content>
+  </mat-card>
 </div>

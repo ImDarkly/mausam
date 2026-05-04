@@ -1,6 +1,6 @@
-<div class="page-wrapper">
+<div class="container">
   @if (loading()) {
-  <div class="spinner"></div>
+  <mat-spinner></mat-spinner>
   } @else if (error()) {
   <p class="error">{{ error() }}</p>
   } @else if (weather()) {
