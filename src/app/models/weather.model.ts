@@ -3,6 +3,7 @@ export interface WeatherData {
   condition: string;
   windSpeed: number;
   humidity: number;
+  illustrationKey: string;
 }
 
 export class CityNotFoundError extends Error {

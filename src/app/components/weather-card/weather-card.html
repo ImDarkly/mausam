@@ -1,9 +1,15 @@
 <div class="container">
   <mat-card class="stats" appearance="outlined">
-    <mat-card-header>
-      <mat-card-title>{{ weather().temperature | temperature: unit() }}</mat-card-title>
-      <mat-card-subtitle>{{ weather().condition }}</mat-card-subtitle>
-    </mat-card-header>
+    <div class="card-main">
+      <img
+        class="illustration"
+        [src]="'assets/illustrations/' + weather().illustrationKey + '.svg'"
+      />
+      <mat-card-header>
+        <mat-card-title>{{ weather().temperature | temperature: unit() }}</mat-card-title>
+        <mat-card-subtitle>{{ weather().condition }}</mat-card-subtitle>
+      </mat-card-header>
+    </div>
 
     <mat-divider [vertical]="true" />
 

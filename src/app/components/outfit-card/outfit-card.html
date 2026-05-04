@@ -1,10 +1,13 @@
-<div class="card">
-  <h2>What to wear</h2>
-  <ul>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>What to wear</mat-card-title>
+  </mat-card-header>
+  <mat-list>
     @for (item of items(); track item) {
-    <li>{{ item }}</li>
-    } @empty {
-    <li>No recommendations available.</li>
+    <mat-list-item>
+      <span matListItemIcon>{{ OUTFIT_ICONS[item] ?? '👔' }}</span>
+      <span matListItemTitle>{{ item }}</span>
+    </mat-list-item>
     }
-  </ul>
-</div>
+  </mat-list>
+</mat-card>

@@ -1,7 +1,3 @@
-.container {
-  padding: 0 1rem;
-}
-
 mat-card {
   display: flex;
   flex-direction: row;
@@ -9,12 +5,18 @@ mat-card {
   gap: 0;
 }
 
-mat-card-header {
+.card-main {
   flex: 1;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 0;
-  padding: 4rem 0;
+  padding: 2rem 0;
+}
+
+.illustration {
+  width: 80px;
+  height: 80px;
+  display: block;
 }
 
 mat-card-content {
