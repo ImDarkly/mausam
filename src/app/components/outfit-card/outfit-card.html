@@ -2,12 +2,14 @@
   <mat-card-header>
     <mat-card-title>What to wear</mat-card-title>
   </mat-card-header>
-  <mat-list>
-    @for (item of items(); track item) {
-    <mat-list-item>
-      <span matListItemIcon>{{ OUTFIT_ICONS[item] ?? '👔' }}</span>
-      <span matListItemTitle>{{ item }}</span>
-    </mat-list-item>
-    }
-  </mat-list>
+  <mat-card-content>
+    <mat-list>
+      @for (item of items(); track item) {
+      <mat-list-item>
+        <span matListItemIcon>{{ OUTFIT_ICONS[item] ?? '👔' }}</span>
+        <span matListItemTitle>{{ item }}</span>
+      </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
 </mat-card>

@@ -45,7 +45,7 @@ mat-card-subtitle {
     flex-direction: row;
     align-items: center;
 
-    mat-icon {
+    .icon-wrapper {
       padding: 1rem;
     }
 

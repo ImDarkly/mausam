@@ -9,8 +9,8 @@ body {
   height: 100%;
   margin: 0;
   font-family: 'Nunito', sans-serif;
-  background-color: var(--mat-app-background-color);
-  color: var(--mat-app-text-color);
+  background-color: var(--mat-sys-background);
+  color: var(--mat-sys-on-surface);
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
