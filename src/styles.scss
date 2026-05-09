@@ -1,5 +1,3 @@
-@use './styles/theme';
-
 *,
 *::before,
 *::after {
@@ -70,6 +68,12 @@ html {
   --mat-sys-surface-container: rgb(233 239 236);
   --mat-sys-surface-container-high: rgb(227 234 231);
   --mat-sys-surface-container-highest: rgb(221 228 225);
+  --mat-sys-corner-extra-small: 4px;
+  --mat-sys-corner-small: 8px;
+  --mat-sys-corner-medium: 12px;
+  --mat-sys-corner-large: 16px;
+  --mat-sys-corner-extra-large: 28px;
+  --mat-sys-corner-full: 9999px;
 }
 
 // Dark theme token overrides

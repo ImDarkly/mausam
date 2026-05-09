@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-search-page',
@@ -17,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
+    MatChipsModule,
   ],
   templateUrl: './search-page.html',
   styleUrl: './search-page.css',
@@ -31,6 +33,10 @@ export class SearchPage {
   form = this.fb.group({
     city: ['', [Validators.required, nonBlank]],
   });
+
+  goToCity(city: string) {
+    this.router.navigate(['/outfit', city]);
+  }
 
   get cityControl() {
     return this.form.get('city')!;
