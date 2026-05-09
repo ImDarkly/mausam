@@ -9,8 +9,8 @@ export class SettingsService {
   private _isDarkMode = signal(false);
   isDarkMode = this._isDarkMode.asReadonly();
 
-  toggleUnit(): void {
-    this._unit.update((u) => (u === 'metric' ? 'imperial' : 'metric'));
+  setUnit(unit: 'metric' | 'imperial'): void {
+    this._unit.set(unit);
   }
 
   toggleDarkMode(): void {

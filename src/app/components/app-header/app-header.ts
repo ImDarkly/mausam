@@ -15,10 +15,4 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppHeader {
   settingsService = inject(SettingsService);
-
-  unit = this.settingsService.unit;
-
-  toggleUnit(): void {
-    this.settingsService.toggleUnit();
-  }
 }

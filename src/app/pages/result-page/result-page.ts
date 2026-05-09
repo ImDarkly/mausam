@@ -9,10 +9,21 @@ import { OutfitService } from '../../services/outfit.service';
 import { RecentSearchesService } from '../../services/recent-searches.service';
 import { SettingsService } from '../../services/settings.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIcon } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-result-page',
-  imports: [WeatherCard, RouterLink, OutfitCard, MatProgressSpinnerModule],
+  imports: [
+    WeatherCard,
+    RouterLink,
+    OutfitCard,
+    MatProgressSpinnerModule,
+    MatButtonToggleModule,
+    MatIcon,
+    MatButtonModule,
+  ],
   templateUrl: './result-page.html',
   styleUrl: './result-page.css',
 })
@@ -21,7 +32,7 @@ export class ResultPage implements OnInit {
   loading = signal(true);
   error = signal<string | null>(null);
 
-  private readonly settingsService = inject(SettingsService);
+  settingsService = inject(SettingsService);
   private readonly route = inject(ActivatedRoute);
   private readonly weatherService = inject(WeatherService);
   private readonly destroyRef = inject(DestroyRef);
