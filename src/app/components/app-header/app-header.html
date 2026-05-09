@@ -1,9 +1,7 @@
-<mat-toolbar>
-  <img src="AppLogo.png" alt="Mausam logo" height="36" />
+<mat-toolbar color="primary">
   <span>Mausam</span>
   <span class="spacer"></span>
-  <mat-button-toggle-group [value]="unit()" (change)="settingsService.toggle()">
-    <mat-button-toggle value="metric">Metric</mat-button-toggle>
-    <mat-button-toggle value="imperial">Imperial</mat-button-toggle>
-  </mat-button-toggle-group>
+  <button mat-icon-button (click)="settingsService.toggleDarkMode()" aria-label="Toggle dark mode">
+    <mat-icon>{{ settingsService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
 </mat-toolbar>

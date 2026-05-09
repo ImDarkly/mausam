@@ -19,6 +19,6 @@ export class AppHeader {
   unit = this.settingsService.unit;
 
   toggleUnit(): void {
-    this.settingsService.toggle();
+    this.settingsService.toggleUnit();
   }
 }
