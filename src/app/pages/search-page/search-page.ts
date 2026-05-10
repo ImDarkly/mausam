@@ -1,17 +1,25 @@
 import { Component, inject } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  ReactiveFormsModule,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { RecentSearchesService } from '../../services/recent-searches.service';
+import { nonBlank } from '../../validators/non-blank.validator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-search-page',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatChipsModule,
+  ],
   templateUrl: './search-page.html',
   styleUrl: './search-page.css',
 })
@@ -26,6 +34,10 @@ export class SearchPage {
     city: ['', [Validators.required, nonBlank]],
   });
 
+  goToCity(city: string) {
+    this.router.navigate(['/outfit', city]);
+  }
+
   get cityControl() {
     return this.form.get('city')!;
   }
@@ -38,8 +50,4 @@ export class SearchPage {
     const city = this.cityControl.value!.trim();
     this.router.navigate(['/outfit', city]);
   }
-}
-
-function nonBlank(control: AbstractControl): ValidationErrors | null {
-  return control.value?.trim().length > 0 ? null : { required: true };
 }

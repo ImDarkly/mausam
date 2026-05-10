@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { CityNotFoundError, WeatherData } from '../models/weather.model';
-import { ConfigService } from '../core/services/config.service';
+import { ConfigService } from './config.service';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
@@ -22,6 +22,7 @@ export class WeatherService {
         condition: res.weather[0].description,
         windSpeed: res.wind.speed * 3.6,
         humidity: res.main.humidity,
+        illustrationKey: getIllustrationKey(res.weather[0].id),
       })),
       catchError((err: HttpErrorResponse) => {
         if (err.status === 404) return throwError(() => new CityNotFoundError(city));
@@ -33,6 +34,15 @@ export class WeatherService {
 
 interface OWMResponse {
   main: { temp: number; humidity: number };
-  weather: [{ description: string }];
+  weather: [{ id: number; description: string }];
   wind: { speed: number };
+}
+
+function getIllustrationKey(id: number): string {
+  if (id < 300) return 'stormy';
+  if (id < 600) return 'rainy';
+  if (id < 700) return 'snowy';
+  if (id < 800) return 'foggy';
+  if (id === 800) return 'sunny';
+  return 'cloudy';
 }

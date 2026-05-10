@@ -4,14 +4,27 @@ import { WeatherService } from '../../services/weather.service';
 import { CityNotFoundError, WeatherData } from '../../models/weather.model';
 import { WeatherCard } from '../../components/weather-card/weather-card';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { catchError, EMPTY, finalize, switchMap, tap } from 'rxjs';
 import { OutfitCard } from '../../components/outfit-card/outfit-card';
 import { OutfitService } from '../../services/outfit.service';
 import { RecentSearchesService } from '../../services/recent-searches.service';
 import { SettingsService } from '../../services/settings.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIcon } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-result-page',
-  imports: [WeatherCard, RouterLink, OutfitCard],
+  imports: [
+    WeatherCard,
+    RouterLink,
+    OutfitCard,
+    MatProgressSpinnerModule,
+    MatButtonToggleModule,
+    MatIcon,
+    MatButtonModule,
+  ],
   templateUrl: './result-page.html',
   styleUrl: './result-page.css',
 })
@@ -20,6 +33,11 @@ export class ResultPage implements OnInit {
   loading = signal(true);
   error = signal<string | null>(null);
   settingsService = inject(SettingsService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly weatherService = inject(WeatherService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly outfitService = inject(OutfitService);
+  private readonly recentSearchesService = inject(RecentSearchesService);
   unit = this.settingsService.unit;
 
   outfit = computed(() => {
@@ -27,42 +45,42 @@ export class ResultPage implements OnInit {
     return w ? this.outfitService.getRecommendations(w) : [];
   });
 
-  constructor(
-    private route: ActivatedRoute,
-    private weatherService: WeatherService,
-    private destroyRef: DestroyRef,
-    private outfitService: OutfitService,
-    private recentSearchesService: RecentSearchesService,
-  ) {}
-
   ngOnInit(): void {
-    const city = this.route.snapshot.paramMap.get('city');
-    if (!city) {
-      this.error.set('No city specified.');
-      this.loading.set(false);
-      return;
-    }
-    this.weatherService
-      .getWeather(city)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (data) => {
-          this.weather.set(data);
-          try {
-            this.recentSearchesService.add(city);
-          } catch {
-          } finally {
+    this.route.paramMap
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap((params) => {
+          const city = params.get('city');
+
+          if (!city) {
+            this.error.set('No city specified.');
             this.loading.set(false);
+            return EMPTY;
           }
-        },
-        error: (err) => {
-          if (err instanceof CityNotFoundError) {
-            this.error.set("We couldn't find that city. Try a different spelling.");
-          } else {
-            this.error.set('Something went wrong. Please try again.');
-          }
-          this.loading.set(false);
-        },
-      });
+
+          this.loading.set(true);
+          this.error.set(null);
+          this.weather.set(null);
+
+          return this.weatherService.getWeather(city).pipe(
+            tap((data) => {
+              this.weather.set(data);
+              try {
+                this.recentSearchesService.add(city);
+              } catch {}
+            }),
+            catchError((err) => {
+              if (err instanceof CityNotFoundError) {
+                this.error.set("We couldn't find that city. Try a different spelling.");
+              } else {
+                this.error.set('Something went wrong. Please try again.');
+              }
+              return EMPTY;
+            }),
+            finalize(() => this.loading.set(false)),
+          );
+        }),
+      )
+      .subscribe();
   }
 }

@@ -1,1 +1,9 @@
-<router-outlet />
+<app-app-header />
+<div class="app-shell">
+  <aside class="search-panel">
+    <app-search-page />
+  </aside>
+  <main class="result-panel" [class.root]="isRootRoute()">
+    <router-outlet />
+  </main>
+</div>
