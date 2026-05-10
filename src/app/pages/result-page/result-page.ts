@@ -4,6 +4,7 @@ import { WeatherService } from '../../services/weather.service';
 import { CityNotFoundError, WeatherData } from '../../models/weather.model';
 import { WeatherCard } from '../../components/weather-card/weather-card';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { catchError, EMPTY, finalize, switchMap, tap } from 'rxjs';
 import { OutfitCard } from '../../components/outfit-card/outfit-card';
 import { OutfitService } from '../../services/outfit.service';
 import { RecentSearchesService } from '../../services/recent-searches.service';
@@ -45,41 +46,41 @@ export class ResultPage implements OnInit {
   });
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
-      const city = params.get('city');
+    this.route.paramMap
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap((params) => {
+          const city = params.get('city');
 
-      if (!city) {
-        this.error.set('No city specified.');
-        this.loading.set(false);
-        return;
-      }
-
-      this.loading.set(true);
-      this.error.set(null);
-      this.weather.set(null);
-
-      this.weatherService
-        .getWeather(city)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: (data) => {
-            this.weather.set(data);
-            try {
-              this.recentSearchesService.add(city);
-            } catch {
-            } finally {
-              this.loading.set(false);
-            }
-          },
-          error: (err) => {
-            if (err instanceof CityNotFoundError) {
-              this.error.set("We couldn't find that city. Try a different spelling.");
-            } else {
-              this.error.set('Something went wrong. Please try again.');
-            }
+          if (!city) {
+            this.error.set('No city specified.');
             this.loading.set(false);
-          },
-        });
-    });
+            return EMPTY;
+          }
+
+          this.loading.set(true);
+          this.error.set(null);
+          this.weather.set(null);
+
+          return this.weatherService.getWeather(city).pipe(
+            tap((data) => {
+              this.weather.set(data);
+              try {
+                this.recentSearchesService.add(city);
+              } catch {}
+            }),
+            catchError((err) => {
+              if (err instanceof CityNotFoundError) {
+                this.error.set("We couldn't find that city. Try a different spelling.");
+              } else {
+                this.error.set('Something went wrong. Please try again.');
+              }
+              return EMPTY;
+            }),
+            finalize(() => this.loading.set(false)),
+          );
+        }),
+      )
+      .subscribe();
   }
 }
