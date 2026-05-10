@@ -4,6 +4,7 @@
       <img
         class="illustration"
         [src]="'assets/illustrations/' + weather().illustrationKey + '.svg'"
+        [alt]="weather().condition + ' weather illustration'"
       />
       <mat-card-header>
         <mat-card-title>{{ weather().temperature | temperature: unit() }}</mat-card-title>
