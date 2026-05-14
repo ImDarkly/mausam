@@ -12,6 +12,7 @@ describe('WeatherCard', () => {
     condition: 'Sunny',
     humidity: 60,
     windSpeed: 15,
+    illustrationKey: 'sunny',
   };
 
   beforeEach(async () => {
@@ -80,6 +81,7 @@ describe('WeatherCard', () => {
       condition: 'Snowy',
       humidity: 85,
       windSpeed: 40,
+      illustrationKey: 'snowy',
     };
 
     fixture.componentRef.setInput('weather', updatedWeather);

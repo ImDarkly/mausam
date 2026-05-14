@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { RecentSearchesService } from '../../services/recent-searches.service';
 import { nonBlank } from '../../validators/non-blank.validator';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +13,6 @@ import { MatChipsModule } from '@angular/material/chips';
   selector: 'app-search-page',
   imports: [
     ReactiveFormsModule,
-    RouterLink,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
