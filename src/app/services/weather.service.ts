@@ -42,10 +42,12 @@ export class WeatherService {
         cityName: res.name,
       })),
       catchError((err: HttpErrorResponse) => {
-        if (err.status === 404)
-          return throwError(
-            () => new CityNotFoundError(params.get('q') ?? params.get('lat') ?? 'unknown'),
-          );
+        if (err.status === 404) {
+          const lat = params.get('lat');
+          const lon = params.get('lon');
+          const identifier = params.get('q') ?? params.get('lat') ?? 'unknown';
+          return throwError(() => new CityNotFoundError(identifier));
+        }
         return throwError(() => new Error('Something went wrong'));
       }),
     );
