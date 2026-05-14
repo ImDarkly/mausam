@@ -18,6 +18,7 @@ describe('GeolocationService', () => {
   });
 
   it('emits coords and completes on success', () => {
+    expect.assertions(2);
     const fakeCoords = { latitude: 51.5, longitude: -0.1 } as GeolocationCoordinates;
 
     getCurrentPositionMock.mockImplementation((success: PositionCallback) =>
