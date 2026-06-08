@@ -33,3 +33,22 @@
   gap: 0.5rem;
   color: var(--mat-sys-error);
 }
+
+.city-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.city-label {
+  font: var(--mat-sys-title-medium);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.city-name {
+  font: var(--mat-sys-display-large);
+  color: var(--mat-sys-primary);
+  margin: 0;
+  text-align: center;
+}
