@@ -39,6 +39,7 @@ export class ResultPage implements OnInit {
   private readonly outfitService = inject(OutfitService);
   private readonly recentSearchesService = inject(RecentSearchesService);
   unit = this.settingsService.unit;
+  cityName = signal<string | null>(null);
 
   outfit = computed(() => {
     const w = this.weather();
@@ -65,6 +66,7 @@ export class ResultPage implements OnInit {
           return this.weatherService.getWeather(city).pipe(
             tap((data) => {
               this.weather.set(data);
+              this.cityName.set(city);
               try {
                 this.recentSearchesService.add(city);
               } catch {}

@@ -4,6 +4,7 @@ import { AppHeader } from './components/app-header/app-header';
 import { SettingsService } from './services/settings.service';
 import { SearchPage } from './pages/search-page/search-page';
 import { filter } from 'rxjs';
+import { IpLocationService } from './services/ip-location.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class App {
   private document = inject(DOCUMENT);
   private settings = inject(SettingsService);
   isRootRoute = signal(true);
+  private readonly ipLocation = inject(IpLocationService);
 
   constructor() {
     effect(() => {
@@ -27,5 +29,7 @@ export class App {
       .subscribe((e: NavigationEnd) => {
         this.isRootRoute.set(e.urlAfterRedirects === '/');
       });
+
+    this.ipLocation.detect();
   }
 }
