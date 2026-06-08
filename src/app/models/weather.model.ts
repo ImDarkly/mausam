@@ -6,6 +6,11 @@ export interface WeatherData {
   illustrationKey: string;
 }
 
+export interface WeatherResult {
+  weatherData: WeatherData;
+  cityName: string;
+}
+
 export class CityNotFoundError extends Error {
   constructor(city: string) {
     super(`City not found: "${city}"`);

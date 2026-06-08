@@ -10,6 +10,7 @@ describe('OutfitService', () => {
     condition: 'clear sky',
     windSpeed: 10,
     humidity: 50,
+    illustrationKey: 'sunny',
     ...overrides,
   });
 
@@ -158,6 +159,7 @@ describe('OutfitService', () => {
         condition: 'heavy snow and rain',
         windSpeed: 50,
         humidity: 90,
+        illustrationKey: 'snowy',
       });
       expect(items).toContain('heavy coat');
       expect(items).toContain('umbrella');

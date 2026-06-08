@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { CityNotFoundError, WeatherData } from '../models/weather.model';
+import { CityNotFoundError, WeatherData, WeatherResult } from '../models/weather.model';
 import { ConfigService } from './config.service';
 
 @Injectable({ providedIn: 'root' })
@@ -16,16 +16,38 @@ export class WeatherService {
       .set('appid', this.configService.get('weatherApiKey'))
       .set('units', 'metric');
 
+    return this._fetch(params).pipe(map((result) => result.weatherData));
+  }
+
+  getWeatherByCoords(lat: number, lon: number): Observable<WeatherResult> {
+    const params = new HttpParams()
+      .set('lat', lat)
+      .set('lon', lon)
+      .set('appid', this.configService.get('weatherApiKey'))
+      .set('units', 'metric');
+
+    return this._fetch(params);
+  }
+
+  private _fetch(params: HttpParams): Observable<WeatherResult> {
     return this.http.get<OWMResponse>(this.BASE_URL, { params }).pipe(
       map((res) => ({
-        temperature: res.main.temp,
-        condition: res.weather[0].description,
-        windSpeed: res.wind.speed * 3.6,
-        humidity: res.main.humidity,
-        illustrationKey: getIllustrationKey(res.weather[0].id),
+        weatherData: {
+          temperature: res.main.temp,
+          condition: res.weather[0].description,
+          windSpeed: res.wind.speed * 3.6,
+          humidity: res.main.humidity,
+          illustrationKey: getIllustrationKey(res.weather[0].id),
+        },
+        cityName: res.name,
       })),
       catchError((err: HttpErrorResponse) => {
-        if (err.status === 404) return throwError(() => new CityNotFoundError(city));
+        if (err.status === 404) {
+          const lat = params.get('lat');
+          const lon = params.get('lon');
+          const identifier = params.get('q') ?? params.get('lat') ?? 'unknown';
+          return throwError(() => new CityNotFoundError(identifier));
+        }
         return throwError(() => new Error('Something went wrong'));
       }),
     );
@@ -33,6 +55,7 @@ export class WeatherService {
 }
 
 interface OWMResponse {
+  name: string;
   main: { temp: number; humidity: number };
   weather: [{ id: number; description: string }];
   wind: { speed: number };

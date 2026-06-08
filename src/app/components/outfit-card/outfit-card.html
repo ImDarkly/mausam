@@ -6,7 +6,7 @@
     <mat-list>
       @for (item of items(); track item) {
       <mat-list-item>
-        <span matListItemIcon>{{ OUTFIT_ICONS[item] ?? '👔' }}</span>
+        <span matListItemIcon>{{ OUTFIT_ICONS[item] }}</span>
         <span matListItemTitle>{{ item }}</span>
       </mat-list-item>
       }
