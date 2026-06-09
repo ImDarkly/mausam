@@ -4,9 +4,9 @@
     <p class="description">Enter a city to get the weather and outfit recommendations.</p>
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="expressive-input">
       <mat-label>City</mat-label>
-      <mat-icon matPrefix>search</mat-icon>
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
       <input id="city" matInput formControlName="city" placeholder="Enter a city..." autofocus />
       <mat-error>Please enter a city name.</mat-error>
     </mat-form-field>
@@ -14,6 +14,7 @@
       mat-flat-button
       color="primary"
       type="submit"
+      class="expressive-button"
       [disabled]="cityControl.invalid && cityControl.touched"
     >
       Get Outfit
