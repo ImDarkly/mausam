@@ -43,3 +43,8 @@ form {
   padding: 1rem;
   margin-top: 1rem;
 }
+
+.search-icon {
+  margin-left: 12px;
+  margin-right: 8px;
+}
