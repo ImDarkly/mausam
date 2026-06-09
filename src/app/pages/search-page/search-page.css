@@ -10,6 +10,8 @@
 }
 
 .heading {
+  font: var(--mat-sys-display-medium);
+  font-weight: 700;
   line-height: 100%;
   text-wrap: balance;
 }
