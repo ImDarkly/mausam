@@ -3,3 +3,8 @@
   border-radius: 0.75em;
   padding: 1.5em;
 }
+
+.filled-tonal-card {
+  background-color: var(--mat-sys-surface-container-high);
+  border: none;
+}
