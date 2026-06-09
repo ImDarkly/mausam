@@ -1,7 +1,12 @@
 <mat-toolbar color="primary">
   <span>Mausam</span>
   <span class="spacer"></span>
-  <button mat-icon-button (click)="settingsService.toggleDarkMode()" aria-label="Toggle dark mode">
+  <button
+    mat-icon-button
+    class="tonal-button"
+    (click)="settingsService.toggleDarkMode()"
+    aria-label="Toggle dark mode"
+  >
     <mat-icon>{{ settingsService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
   </button>
 </mat-toolbar>
