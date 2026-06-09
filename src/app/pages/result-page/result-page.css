@@ -56,3 +56,19 @@
   margin: 0;
   text-align: center;
 }
+
+.unit-toggle {
+  background-color: var(--mat-sys-primary-container);
+  border-radius: 999px;
+  border: none;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+::ng-deep .unit-toggle {
+  --mat-button-toggle-label-text-color: var(--mat-sys-on-primary-container);
+  --mat-button-toggle-selected-state-text-color: var(--mat-sys-on-primary);
+  --mat-button-toggle-selected-state-background-color: var(--mat-sys-primary);
+
+  background-color: var(--mat-sys-primary-container);
+}
