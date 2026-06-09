@@ -34,3 +34,8 @@ form {
   color: var(--mat-sys-on-surface-variant);
   margin-bottom: 0.5rem;
 }
+
+.search-icon {
+  margin-left: 12px;
+  margin-right: 8px;
+}

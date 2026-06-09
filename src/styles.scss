@@ -1,0 +1,28 @@
+$radius: 28px;
+
+// ── Expressive input ──────────────────────────────────────────────────────────
+// The MDC outlined text field renders its border as three separate spans:
+// __leading (left cap), __notch (label gap), __trailing (right cap).
+// border-radius must be applied to each piece individually.
+
+.expressive-input {
+  .mdc-notched-outline__leading {
+    border-radius: $radius 0 0 $radius !important;
+    min-width: $radius !important; // prevents the left cap from being too narrow
+  }
+
+  .mdc-notched-outline__trailing {
+    border-radius: 0 $radius $radius 0 !important;
+  }
+
+  // The notch holds the floating label — it must NOT be rounded
+  .mdc-notched-outline__notch {
+    border-radius: 0 !important;
+  }
+}
+
+// ── Expressive button ─────────────────────────────────────────────────────────
+.expressive-button.mat-mdc-button-base {
+  border-radius: 9999px !important;
+  min-height: 48px;
+}

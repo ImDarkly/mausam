@@ -16,6 +16,10 @@ html {
       ),
       typography: Nunito,
       density: 0,
+      shape: (
+        form-field: 28px,
+        button: 9999px,
+      ),
     )
   );
 }
