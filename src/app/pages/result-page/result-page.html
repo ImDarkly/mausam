@@ -11,7 +11,11 @@
     <span class="city-label">Weather in</span>
     <h1 class="city-name">{{ cityName() }}</h1>
   </div>
-  <mat-button-toggle-group [value]="unit()" (change)="settingsService.setUnit($event.value)">
+  <mat-button-toggle-group
+    class="unit-toggle"
+    [value]="unit()"
+    (change)="settingsService.setUnit($event.value)"
+  >
     <mat-button-toggle value="metric">°C · km/h</mat-button-toggle>
     <mat-button-toggle value="imperial">°F · mph</mat-button-toggle>
   </mat-button-toggle-group>
