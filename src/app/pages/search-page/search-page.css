@@ -36,3 +36,10 @@ form {
   color: var(--mat-sys-on-surface-variant);
   margin-bottom: 0.5rem;
 }
+
+.recent-searches-container {
+  background-color: var(--mat-sys-surface-container);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
