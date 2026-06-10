@@ -1,0 +1,41 @@
+<div class="container">
+  <mat-card class="stats" appearance="outlined">
+    <div class="card-main">
+      <div class="illustration-container">
+        <img
+          class="illustration"
+          [src]="'assets/illustrations/' + weather().illustrationKey + '.svg'"
+          [alt]="weather().condition + ' weather illustration'"
+        />
+      </div>
+      <mat-card-header>
+        <mat-card-title>{{ weather().temperature | temperature: unit() }}</mat-card-title>
+        <mat-card-subtitle>{{ weather().condition }}</mat-card-subtitle>
+      </mat-card-header>
+    </div>
+
+    <mat-divider [vertical]="true" />
+
+    <mat-card-content class="weather-meta">
+      <div class="row">
+        <div class="icon-wrapper">
+          <mat-icon>water_drop</mat-icon>
+        </div>
+        <div class="col">
+          <span class="mat-label-large">Humidity</span>
+          <span class="mat-body-large">{{ weather().humidity }}%</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="icon-wrapper">
+          <mat-icon>air</mat-icon>
+        </div>
+        <div class="col">
+          <span class="mat-label-large">Wind Speed</span>
+          <span class="mat-body-large">{{ weather().windSpeed | windSpeed: unit() }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

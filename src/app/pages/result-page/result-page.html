@@ -1,0 +1,31 @@
+<div class="container">
+  @if (loading()) {
+  <mat-spinner />
+  } @else if (error()) {
+  <div class="error">
+    <mat-icon>error_outline</mat-icon>
+    <p>{{ error() }}</p>
+  </div>
+  } @else if (weather()) {
+  <div class="city-hero">
+    <span class="city-label">Weather in</span>
+    <h1 class="city-name">{{ cityName() }}</h1>
+  </div>
+  <mat-button-toggle-group
+    class="unit-toggle"
+    [value]="unit()"
+    (change)="settingsService.setUnit($event.value)"
+  >
+    <mat-button-toggle value="metric">°C · km/h</mat-button-toggle>
+    <mat-button-toggle value="imperial">°F · mph</mat-button-toggle>
+  </mat-button-toggle-group>
+  <div class="cards-grid">
+    <app-weather-card [weather]="weather()!" [unit]="unit()" />
+    <app-outfit-card [items]="outfit()" />
+  </div>
+  }
+  <a mat-button class="go-back" routerLink="/">
+    <mat-icon>arrow_back</mat-icon>
+    Search again
+  </a>
+</div>

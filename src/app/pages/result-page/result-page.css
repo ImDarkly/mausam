@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  gap: 2rem;
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 700px) {
+  .cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .go-back {
+    display: none;
+  }
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mat-sys-error);
+}
+
+.city-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  border-radius: 999px;
+  padding: 1rem 2rem;
+}
+
+.city-label {
+  font: var(--mat-sys-title-medium);
+  color: var(--mat-sys-on-primary-container);
+}
+
+.city-name {
+  font: var(--mat-sys-display-large);
+  color: var(--mat-sys-on-primary-container);
+  margin: 0;
+  text-align: center;
+}
+
+.unit-toggle {
+  background-color: var(--mat-sys-primary-container);
+  border-radius: 999px;
+  border: none;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+::ng-deep .unit-toggle {
+  --mat-button-toggle-label-text-color: var(--mat-sys-on-primary-container);
+  --mat-button-toggle-selected-state-text-color: var(--mat-sys-on-primary);
+  --mat-button-toggle-selected-state-background-color: var(--mat-sys-primary);
+
+  background-color: var(--mat-sys-primary-container);
+}
