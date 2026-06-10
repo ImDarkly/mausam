@@ -64,9 +64,9 @@ export class ResultPage implements OnInit {
           this.weather.set(null);
 
           return this.weatherService.getWeather(city).pipe(
-            tap((data) => {
-              this.weather.set(data);
-              this.cityName.set(city);
+            tap((result) => {
+              this.weather.set(result.weatherData);
+              this.cityName.set(result.cityName);
               try {
                 this.recentSearchesService.add(city);
               } catch {}

@@ -48,3 +48,5 @@ Thumbs.db
 .env.*
 *.secret
 public/config.json
+.vercel
+.env*

@@ -1,36 +1,22 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { CityNotFoundError, WeatherData, WeatherResult } from '../models/weather.model';
-import { ConfigService } from './config.service';
+import { CityNotFoundError, WeatherResult } from '../models/weather.model';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
   private http = inject(HttpClient);
-  private configService = inject(ConfigService);
-  private readonly BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
-  getWeather(city: string): Observable<WeatherData> {
-    const params = new HttpParams()
-      .set('q', city)
-      .set('appid', this.configService.get('weatherApiKey'))
-      .set('units', 'metric');
-
-    return this._fetch(params).pipe(map((result) => result.weatherData));
+  getWeather(city: string): Observable<WeatherResult> {
+    return this._fetch({ q: city });
   }
 
   getWeatherByCoords(lat: number, lon: number): Observable<WeatherResult> {
-    const params = new HttpParams()
-      .set('lat', lat)
-      .set('lon', lon)
-      .set('appid', this.configService.get('weatherApiKey'))
-      .set('units', 'metric');
-
-    return this._fetch(params);
+    return this._fetch({ lat: lat.toString(), lon: lon.toString() });
   }
 
-  private _fetch(params: HttpParams): Observable<WeatherResult> {
-    return this.http.get<OWMResponse>(this.BASE_URL, { params }).pipe(
+  private _fetch(paramsObj: { [key: string]: string }): Observable<WeatherResult> {
+    return this.http.get<OWMResponse>('/api/weather', { params: paramsObj }).pipe(
       map((res) => ({
         weatherData: {
           temperature: res.main.temp,
@@ -43,9 +29,7 @@ export class WeatherService {
       })),
       catchError((err: HttpErrorResponse) => {
         if (err.status === 404) {
-          const lat = params.get('lat');
-          const lon = params.get('lon');
-          const identifier = params.get('q') ?? params.get('lat') ?? 'unknown';
+          const identifier = paramsObj['q'] ?? `${paramsObj['lat']},${paramsObj['lon']}`;
           return throwError(() => new CityNotFoundError(identifier));
         }
         return throwError(() => new Error('Something went wrong'));
